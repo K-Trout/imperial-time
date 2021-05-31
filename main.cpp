@@ -27,8 +27,8 @@ public:
         time_t tt = chrono::system_clock::to_time_t(now);
         tm local_time = *localtime(&tt);
 
-        auto ms = std::chrono::duration_cast<std::chrono::milliseconds>(now.time_since_epoch()) -
-                  std::chrono::duration_cast<std::chrono::seconds>(now.time_since_epoch());
+        auto ms = chrono::duration_cast<chrono::milliseconds>(now.time_since_epoch()) -
+                  chrono::duration_cast<chrono::seconds>(now.time_since_epoch());
 
         return (((local_time.tm_hour * 60) + local_time.tm_min) * 60 + local_time.tm_sec) * 1000 + ms.count();
     }
